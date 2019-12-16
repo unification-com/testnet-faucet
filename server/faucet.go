@@ -21,7 +21,7 @@ import (
 	"github.com/tendermint/tmlibs/bech32"
 	"github.com/tomasen/realip"
 
-	_ "github.com/unification-com/testnet-faucet/client/statik" // TODO: Replace with the absolute import path
+	_ "github.com/unification-com/testnet-faucet/client/statik"
 )
 
 type FaucetConfig struct {
