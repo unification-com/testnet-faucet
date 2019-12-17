@@ -1,6 +1,10 @@
 #!/bin/bash
+export GOROOT="/home/deploy/go"
+export GOPATH="/home/deploy/.go"
+export GO111MODULE="on"
 
-make build-front
+/home/deploy/.go/bin/statik -src=./client/public -dest=./client -f -m
 make clean
-make build
+/home/deploy/go/bin/go build -mod=readonly -o build/faucet ./server/faucet.go
+
 build/faucet
