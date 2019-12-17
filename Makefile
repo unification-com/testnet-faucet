@@ -23,6 +23,12 @@ build-front:
 clean:
 	rm -rf ./build
 
+run:
+	make build-front
+	make clean
+	make build
+	build/faucet
+
 fmt:
 	@find . -name '*.go' -type f -not -path "./vendor*" -not -path "*.git*" | xargs gofmt -w -s
 
