@@ -225,7 +225,7 @@ func faucetSendHandler(w http.ResponseWriter, req *http.Request) {
 
 	if captchaPassed {
 		undCliCmd := fmt.Sprintf(
-			"undcli tx send %v %v %v%v --chain-id=%v --node=%v",
+			"undcli tx send %v %v %v%v --chain-id=%v --node=%v --gas=auto --gas-adjustment=1.5 --gas-prices=0.025nund",
 			config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl)
 
 		fmt.Println(undCliCmd)
