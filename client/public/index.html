@@ -104,7 +104,7 @@
                 if(data.Success === true) {
                     Swal.fire({
                         title: 'Success!',
-                        text: data.Amount + ' Test UND sent in Tx: ' + data.Tx,
+                        html: data.Amount + ' Test UND sent in Tx: <a href="http://localhost:3000/transactions/' + data.Tx + '" style="color: #004070;" target="blank">' + data.Tx + '</a>',
                         icon: 'success',
                         confirmButtonText: 'Cool!'
                     });
