@@ -9,3 +9,6 @@
 
 # Build
 build
+
+# This is a build artefact
+client/statik/statik.go
