@@ -33,6 +33,7 @@ type FaucetConfig struct {
 	NodePass           string
 	NodeRpcUrl         string
 	FaucetPublicUrl    string
+	FaucetCliHomeDir   string
 }
 
 type FaucetRequest struct {
@@ -105,6 +106,7 @@ func Init() {
 	config.NodePass = procDotEnv("NODE_KEY_PASS")
 	config.NodeRpcUrl = procDotEnv("FAUCET_NODE_RPC_URL")
 	config.FaucetPublicUrl = procDotEnv("FAUCET_PUBLIC_URL")
+	config.FaucetCliHomeDir = procDotEnv("FACUET_UNDCLI_HOME")
 }
 
 func StartServer() {
@@ -224,9 +226,15 @@ func faucetSendHandler(w http.ResponseWriter, req *http.Request) {
 	}
 
 	if captchaPassed {
+
+		homeDir := ""
+		if len(config.FaucetCliHomeDir) > 0 {
+			homeDir = " --home " + config.FaucetCliHomeDir
+		}
+
 		undCliCmd := fmt.Sprintf(
-			"undcli tx send %v %v %v%v --chain-id=%v --node=%v --gas=auto --gas-adjustment=1.5 --gas-prices=0.025nund",
-			config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl)
+			"undcli tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment 1.5 --gas-prices 0.025nund --output json%v",
+			config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl, homeDir)
 
 		fmt.Println(undCliCmd)
 
