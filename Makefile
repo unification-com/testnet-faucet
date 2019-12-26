@@ -11,11 +11,14 @@ go.sum: go.mod
 	go mod verify
 
 build-front:
+	@mkdir -p ./build/client
+	@cp -R ./client/public ./build/client/public
 	@echo "--> Setting explorer URL to ${MAINCHAIN_EXPLORER_URL}"
-	@sed -i 's#__MAINCHAIN_EXPLORER_URL__#${MAINCHAIN_EXPLORER_URL}#g' ./client/public/index.html
+	@sed -i 's#__MAINCHAIN_EXPLORER_URL__#${MAINCHAIN_EXPLORER_URL}#g' ./build/client/public/index.html
 	@echo "--> Setting ReCaptcha Site Key to ${RECAPTCHA_SITE_KEY}"
-	@sed -i 's#__RECAPTCHA_SITE_KEY__#${RECAPTCHA_SITE_KEY}#g' ./client/public/index.html
-	statik -src=./client/public -dest=./client -f -m
+	@sed -i 's#__RECAPTCHA_SITE_KEY__#${RECAPTCHA_SITE_KEY}#g' ./build/client/public/index.html
+	statik -src=./build/client/public -dest=./client -f -m
+	@rm -rf ./build/client
 
 clean:
 	rm -rf ./build
