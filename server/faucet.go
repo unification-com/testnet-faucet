@@ -34,6 +34,7 @@ type FaucetConfig struct {
 	NodeRpcUrl         string
 	FaucetPublicUrl    string
 	FaucetCliHomeDir   string
+	GoBinDir           string
 }
 
 type FaucetRequest struct {
@@ -107,6 +108,7 @@ func Init() {
 	config.NodeRpcUrl = procDotEnv("FAUCET_NODE_RPC_URL")
 	config.FaucetPublicUrl = procDotEnv("FAUCET_PUBLIC_URL")
 	config.FaucetCliHomeDir = procDotEnv("FACUET_UNDCLI_HOME")
+	config.GoBinDir = procDotEnv("GO_BIN_DIR")
 }
 
 func StartServer() {
@@ -233,8 +235,8 @@ func faucetSendHandler(w http.ResponseWriter, req *http.Request) {
 		}
 
 		undCliCmd := fmt.Sprintf(
-			"undcli tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment 1.5 --gas-prices 0.025nund --output json%v",
-			config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl, homeDir)
+			"%vundcli tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment 1.5 --gas-prices 0.025nund --output json%v",
+			config.GoBinDir, config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl, homeDir)
 
 		fmt.Println(undCliCmd)
 
