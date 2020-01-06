@@ -233,7 +233,7 @@ func faucetSendHandler(w http.ResponseWriter, req *http.Request) {
 		}
 
 		undCliCmd := fmt.Sprintf(
-			"undcli tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment 1.5 --gas-prices 0.025nund --output json%v",
+			"/home/deploy/.go/bin/undcli_faucet tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment 1.5 --gas-prices 0.025nund --output json%v",
 			config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl, homeDir)
 
 		fmt.Println(undCliCmd)
