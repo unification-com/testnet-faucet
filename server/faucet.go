@@ -131,6 +131,11 @@ func StartServer() {
 func executeCmd(command string, nodePass ...string) (string, error) {
 	cmd, wc, out := goExecute(command)
 
+	for _, write := range nodePass {
+		_, _ = wc.Write([]byte(write + "\n"))
+	}
+	time.Sleep(time.Second)
+	
 	_, _ = wc.Write([]byte("y\n"))
 	time.Sleep(time.Second)
 
