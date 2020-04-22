@@ -37,6 +37,7 @@ type FaucetConfig struct {
 	GoBinDir           string
 	GasPrices          string
 	GasAdjustment      string
+	BroadcastMode      string
 }
 
 type FaucetRequest struct {
@@ -113,6 +114,7 @@ func Init() {
 	config.GoBinDir = procDotEnv("GO_BIN_DIR")
 	config.GasPrices = procDotEnv("GAS_PRICES")
 	config.GasAdjustment = procDotEnv("GAS_ADJUSTMENT")
+	config.BroadcastMode = procDotEnv("BROADCAST_MODE")
 }
 
 func StartServer() {
@@ -244,8 +246,8 @@ func faucetSendHandler(w http.ResponseWriter, req *http.Request) {
 		}
 
 		undCliCmd := fmt.Sprintf(
-			"%vundcli tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment %v --gas-prices %v --memo UND_TestNet_Faucet --output json%v",
-			config.GoBinDir, config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl, config.GasAdjustment, config.GasPrices, homeDir)
+			"%vundcli tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment %v --gas-prices %v --broadcast-mode %v --memo UND_TestNet_Faucet --output json%v",
+			config.GoBinDir, config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl, config.GasAdjustment, config.GasPrices, config.BroadcastMode, homeDir)
 
 		fmt.Println(undCliCmd)
 
