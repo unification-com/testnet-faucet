@@ -3,7 +3,7 @@ export GO111MODULE = on
 include .env
 export $(shell sed 's/=.*//' .env)
 
-build: go.sum
+build: clean go.sum
 	go build -mod=readonly -o build/faucet ./server/faucet.go
 
 go.sum: go.mod
