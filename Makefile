@@ -3,7 +3,7 @@ export GO111MODULE = on
 include .env
 export $(shell sed 's/=.*//' .env)
 
-build: clean go.sum
+build: clean build-front go.sum
 	go build -mod=readonly -o build/faucet ./server/faucet.go
 
 go.sum: go.mod
@@ -11,6 +11,7 @@ go.sum: go.mod
 	go mod verify
 
 build-front:
+	@cd /tmp && go get github.com/rakyll/statik
 	@mkdir -p ./build/client
 	@cp -R ./client/public ./build/client/public
 	@echo "--> Setting explorer URL to ${MAINCHAIN_EXPLORER_URL}"
