@@ -246,7 +246,7 @@ func faucetSendHandler(w http.ResponseWriter, req *http.Request) {
 		}
 
 		undCliCmd := fmt.Sprintf(
-			"%vundcli tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment %v --gas-prices %v --broadcast-mode %v --memo UND_TestNet_Faucet --output json%v",
+			"%vundcli tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment %v --gas-prices %v --broadcast-mode %v --memo Unification_TestNet_Faucet --output json%v",
 			config.GoBinDir, config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl, config.GasAdjustment, config.GasPrices, config.BroadcastMode, homeDir)
 
 		fmt.Println(undCliCmd)
@@ -263,7 +263,7 @@ func faucetSendHandler(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(200)
 		w.Header().Set("Content-Type", "application/json")
 
-		// quick hack to return UND amount from nund
+		// quick hack to return FUND amount from nund
 
 		fromAmt, _ := strconv.ParseFloat(config.FaucetAmountToSend, 64)
 		fromAmtBf := new(big.Float).SetFloat64(fromAmt)

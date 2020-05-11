@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unification UND dev testnet faucet</title>
+    <title>Unification TestNet Faucet</title>
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/application.css">
     <link rel="apple-touch-icon" href="./favicons/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="192x192" href="./favicons/android-chrome-192x192.png">
@@ -21,16 +21,16 @@
     </div>
 </header>
 <section class="content">
-    <h1>Unification Test UND faucet for TestNet</h1>
+    <h1>Unification Test FUND Faucet for TestNet</h1>
     <br/><br/>
     <h3>
-        Welcome to the UND TestNet Faucet! Please enter your und wallet address below to receive 10 Test UND.
+        Welcome to the Unification TestNet Faucet! Please enter your und wallet address below to receive 10 Test FUND.
         <br>If you do not have a wallet address on TestNet, please follow the
         <a href="https://docs.unification.io/accounts-wallets.html" target="_blank">guide</a>.
     </h3>
     <br/><br/>
     <p>
-        <strong>Please note</strong>: Test UND are only available on our public TestNet.
+        <strong>Please note</strong>: Test FUND are only available on our public TestNet.
     </p>
     <form action="/" method="POST" id="get-und-form">
         <div class="request-tokens">
@@ -41,11 +41,11 @@
                 <div class="g-recaptcha" data-sitekey="__RECAPTCHA_SITE_KEY__"></div>
             </div>
             <br/>
-            <button type="submit" id="btn-get-und" class="request-tokens-button">Request 10 Test UND</button>
+            <button type="submit" id="btn-get-und" class="request-tokens-button">Request 10 Test FUND</button>
 
             <br/>
             <br/>
-            <p><em>Test UND are limited. Please be kind and do not abuse!</em></p>
+            <p><em>Test FUND are limited. Please be kind and do not abuse!</em></p>
         </div>
     </form>
 </section>
@@ -82,7 +82,7 @@
                 loader.addClass("hidden");
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Please enter a UND Wallet address',
+                    text: 'Please enter a und Wallet address',
                     icon: 'error',
                     confirmButtonText: 'OK'
                 });
@@ -114,7 +114,7 @@
                 if(data.Success === true) {
                     Swal.fire({
                         title: 'Success!',
-                        html: data.Amount + ' Test UND sent in Tx: <a href="__MAINCHAIN_EXPLORER_URL__/transactions/' + data.Tx + '" style="color: #004070;" target="blank">' + data.Tx + '</a>',
+                        html: data.Amount + ' Test FUND sent in Tx: <a href="__MAINCHAIN_EXPLORER_URL__/transactions/' + data.Tx + '" style="color: #004070;" target="blank">' + data.Tx + '</a>',
                         icon: 'success',
                         confirmButtonText: 'Cool!'
                     });
