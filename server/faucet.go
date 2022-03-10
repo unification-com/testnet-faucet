@@ -14,7 +14,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dpapathanasiou/go-recaptcha"
 	"github.com/joho/godotenv"
 	"github.com/rakyll/statik/fs"
 	"github.com/spf13/cobra"
@@ -141,7 +140,7 @@ func executeCmd(command string, nodePass ...string) (string, error) {
 		_, _ = wc.Write([]byte(write + "\n"))
 	}
 	time.Sleep(time.Second)
-	
+
 	_, _ = wc.Write([]byte("y\n"))
 	time.Sleep(time.Second)
 
@@ -246,7 +245,7 @@ func faucetSendHandler(w http.ResponseWriter, req *http.Request) {
 		}
 
 		undCliCmd := fmt.Sprintf(
-			"%vundcli tx send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment %v --gas-prices %v --broadcast-mode %v --memo UND_TestNet_Faucet --output json%v",
+			"%vund tx bank send %v %v %v%v --chain-id %v --node %v --gas auto --gas-adjustment %v --gas-prices %v --broadcast-mode %v --memo UND_TestNet_Faucet --output json%v",
 			config.GoBinDir, config.NodeKeyName, encodedAddress, config.FaucetAmountToSend, config.FaucetDenom, config.ChainID, config.NodeRpcUrl, config.GasAdjustment, config.GasPrices, config.BroadcastMode, homeDir)
 
 		fmt.Println(undCliCmd)
