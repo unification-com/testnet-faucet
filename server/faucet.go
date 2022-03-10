@@ -262,7 +262,7 @@ func faucetSendHandler(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(200)
 		w.Header().Set("Content-Type", "application/json")
 
-		// quick hack to return UND amount from nund
+		// quick hack to return FUND amount from nund
 
 		fromAmt, _ := strconv.ParseFloat(config.FaucetAmountToSend, 64)
 		fromAmtBf := new(big.Float).SetFloat64(fromAmt)
